@@ -40,7 +40,7 @@ $(document).ready(function () {
     aText.push("But I also know that you are trying so hard to make everything okay.");
     aText.push("And I promise that soon, everything actually will be.");
     aText.push("But for now, it's okay to not have it all together.");
-    aText.push("I love you so much, I see how hard you are trying, and I know that this too shal pass.");
+    aText.push("I love you so much, I see how hard you are trying, and I know that this too shall pass.");
     aText.push("-Pat");
     iArrLength = aText[0].length;
     typewriter()
