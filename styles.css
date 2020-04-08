@@ -1,0 +1,13 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.secret{
+    padding: 40px;
+    color: black;
+    font-size: 80px;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+
