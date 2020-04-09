@@ -82,9 +82,11 @@ function getLatestSecret(secrets) {
 
 function splitStringIntoArray(string) {
     string = addStringWrapper(string);
-    const secretStringArr = string.split(". ");
+    let secretStringArr = string.split(". ");
     for (var i = 1; i < secretStringArr.length - 2; i++) {
-        secretStringArr[i] = secretStringArr[i] + ".";
+        if (!secretStringArr[i].includes("!") && !secretStringArr[i].includes("?")) {
+            secretStringArr[i] = secretStringArr[i] + ".";
+        }
     }
     console.log(secretStringArr);
     aText = secretStringArr;
