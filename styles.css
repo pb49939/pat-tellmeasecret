@@ -9,5 +9,58 @@ html {
     font-family: 'Raleway', sans-serif;
 }
 
+#scroll{
+    margin-top: 30px;
+}
+
+#secretCount{
+    color: black;
+    font-size: 26px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+    #secretCount{
+        font-size: 40px;
+    }
+}
+
+/*add secret page */
+
+h1{
+    font-size: 40px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
+
+#secretInput{
+    height: 70vh;
+    font-size: 40px;
+    border: solid 1px black;
+    margin-left: 10%; 
+    margin-right: 10%;
+    width: 80%;
+}
+
+#saveButton{
+    height: 50px; 
+    margin-left: 20%; 
+    margin-right: 20%;
+    width: 60%;
+    border-radius: 5px; 
+    border: solid 1px black;
+    cursor: pointer;
+    font-size: 40px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
 
 
