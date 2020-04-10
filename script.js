@@ -1,3 +1,4 @@
+var pageHasLoaded = false;
 // set up text to print, each item in array is new line
 var aText = new Array(
 
@@ -33,17 +34,21 @@ function typewriter() {
     while (iRow < iIndex) {
         sContents += aText[iRow++] + '<br /><br />';
     }
-    destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
-    if (iTextPos++ == iArrLength) {
-        iTextPos = 0;
-        iIndex++;
-        if (iIndex != aText.length) {
-            iArrLength = aText[iIndex].length;
-            setTimeout("typewriter()", 500);
+
+    if (aText[iIndex]) {
+        destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+        if (iTextPos++ == iArrLength) {
+            iTextPos = 0;
+            iIndex++;
+            if (iIndex != aText.length) {
+                iArrLength = aText[iIndex].length;
+                setTimeout("typewriter()", 500);
+            }
+        } else {
+            setTimeout("typewriter()", iSpeed);
         }
-    } else {
-        setTimeout("typewriter()", iSpeed);
     }
+
 }
 
 $(document).ready(function () {
@@ -68,7 +73,10 @@ function getAllSecrets() {
             const secrets = snapshot.val();
             console.log(secrets);
             getLatestSecret(secrets);
-            $("#secretCount").text(secrets.length - 1);
+            if (!pageHasLoaded) {
+                pageHasLoaded = true;
+                convertSecretsArrayIndexesToString(secrets);
+            }
             resolve(secrets);
         });
     });
@@ -97,6 +105,64 @@ function splitStringIntoArray(string) {
 function addStringWrapper(string) {
     return "Dear Liv,. " + string + " -Pat. "
 }
+
+function convertSecretsArrayIndexesToString(secrets) {
+    console.log("re rendering these links");
+    for (let i = 0; i < secrets.length - 1; i++) {
+        const index = i + 1;
+        if (i == secrets.length - 2) {
+            renderButton("button", "secretLinksContainer", index, "secret-link active-secret-link", "secretLink" + index, "goToSecret(" + index + ")");
+        } else {
+            renderButton("button", "secretLinksContainer", index, "secret-link", "secretLink" + index, "goToSecret(" + index + ")");
+        }
+
+    }
+
+}
+
+function renderButton(
+    elementType,
+    parentID,
+    innerHTML,
+    className,
+    ID,
+    onclick
+) {
+    var container = document.getElementById(parentID);
+    var el = document.createElement(elementType);
+    el.innerHTML = innerHTML;
+    el.className += className;
+    el.id = ID;
+    el.setAttribute("onclick", onclick);
+    container.appendChild(el);
+}
+
+function goToSecret(index) {
+    aText = new Array();
+    iIndex = 0; // start printing array at this posision
+    iTextPos = 0; // initialise text position
+    sContents = ''; // initialise contents variable
+
+    console.log("fetching secret " + index)
+
+    $(".active-secret-link").removeClass("active-secret-link");
+    $("#secretLink" + index).addClass("active-secret-link");
+
+    return new Promise((resolve, reject) => {
+        var secretsRef = database.ref(`/Secrets/${index}`);
+        secretsRef.on("value", function (snapshot) {
+            const secrets = snapshot.val();
+            const secret = secrets.secret;
+            console.log(secret);
+            splitStringIntoArray(secret);
+            //getLatestSecret(secrets);
+            //convertSecretsArrayIndexesToString(secrets);
+            resolve(secrets);
+        });
+    });
+
+}
+
 
 
 

@@ -13,7 +13,7 @@ html {
     margin-top: 30px;
 }
 
-#secretCount{
+#secretLinksContainer{
     color: black;
     font-size: 26px;
     font-family: 'Raleway', sans-serif;
@@ -21,13 +21,40 @@ html {
     position: fixed;
     bottom: 10px;
     left: 50%;
+    transform: translateX(-50%);
 }
 
+.secret-link{
+    display: inline;
+    margin-left: 5px; 
+    margin-right: 5px; 
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    font-size: 26px;
+    padding-bottom: 5px;
+    background-color: white;
+}
+
+.active-secret-link{
+    border-bottom: solid 1px black;
+}
+
+
+
 @media screen and (max-width: 1000px) {
-    #secretCount{
-        font-size: 40px;
+    #secretLinksContainer{
+        font-size: 45px;
+    }
+
+    .secret-link{
+        margin-left: 25px; 
+        margin-right: 25px; 
+        font-size: 45px;
     }
 }
+
+
 
 /*add secret page */
 
