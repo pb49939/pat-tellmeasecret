@@ -47,6 +47,9 @@ function addSecret(secret, index) {
     const url = 'https://pbaldwi3.api.stdlib.com/smsproject@dev/sendText/';
     Http.open("GET", url);
     Http.send();
+
+    alert("you should be receiving a text shorty");
+    $("#saveButton").prop('disabled', true);
 }
 
 
