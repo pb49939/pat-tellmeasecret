@@ -13,6 +13,8 @@ var sContents = ''; // initialise contents variable
 var iRow; // initialise current row
 var selectedIndex;
 var secretsLength;
+var timeoutA;
+var timeoutB;
 
 var firebaseConfig = {
     apiKey: "AIzaSyCnW60Q61rA-FhQ30NtJKVq5lUCV9BTwfg",
@@ -44,10 +46,10 @@ function typewriter() {
             iIndex++;
             if (iIndex != aText.length) {
                 iArrLength = aText[iIndex].length;
-                setTimeout("typewriter()", 500);
+                timeoutA = setTimeout("typewriter()", 500);
             }
         } else {
-            setTimeout("typewriter()", iSpeed);
+            timeoutB = setTimeout("typewriter()", iSpeed);
         }
     }
 
@@ -235,6 +237,8 @@ function initializePage() {
     iTextPos = 0; // initialise text position
     sContents = ''; // initialise contents variable
     $("#secret").text("");
+    clearTimeout(timeoutA)
+    clearTimeout(timeoutB)
 }
 
 
