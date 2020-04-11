@@ -42,6 +42,11 @@ function addSecret(secret, index) {
         secret: secret,
         timestamp: date.toString()
     });
+
+    const Http = new XMLHttpRequest();
+    const url = 'https://pbaldwi3.api.stdlib.com/smsproject@dev/sendText/';
+    Http.open("GET", url);
+    Http.send();
 }
 
 
