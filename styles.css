@@ -22,6 +22,8 @@ html {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
+    width: 100%;
+       
 }
 
 .secret-link{
@@ -48,8 +50,8 @@ html {
     }
 
     .secret-link{
-        margin-left: 25px; 
-        margin-right: 25px; 
+        margin-left: 15px; 
+        margin-right: 15px; 
         font-size: 45px;
     }
 }
